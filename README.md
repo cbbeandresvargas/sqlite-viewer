@@ -22,3 +22,11 @@ Desarrollo: `cargo run --release -- ruta/a/archivo.db`
 - **Abrir archivo SQLite**, o pasar la ruta como argumento ("Abrir con…" / arrastrar sobre el .exe).
 - Al hacer clic en una tabla se cargan sus filas de 50 en 50 (Anterior / Siguiente).
 - Panel **CONSULTA SQL**: escribe la sentencia y pulsa **▶ Ejecutar**. Las SELECT muestran como máximo 1000 filas.
+
+## Paquete .deb (Debian/Ubuntu/Mint)
+```bash
+./build.sh --deb                                      # genera dist/sqlite-viewer_<versión>_amd64.deb
+sudo apt install ./dist/sqlite-viewer_0.1.0-1_amd64.deb
+sudo apt remove sqlite-viewer                         # desinstalar
+```
+El paquete instala el binario en `/usr/bin`, crea la entrada en el menú de aplicaciones con su icono y registra el programa para la opción "Abrir con…" de los archivos SQLite.

@@ -4,6 +4,7 @@
 #   ./build.sh            -> binario Linux en dist/
 #   ./build.sh --deps     -> instala dependencias del sistema (Debian/Ubuntu) y compila
 #   ./build.sh --windows  -> además genera dist/sqlite-viewer.exe (requiere mingw-w64)
+#   ./build.sh --deb      -> además genera el paquete dist/sqlite-viewer_*.deb
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -27,4 +28,11 @@ if [[ " $* " == *" --windows "* ]]; then
   cargo build --release --target x86_64-pc-windows-gnu
   cp target/x86_64-pc-windows-gnu/release/sqlite-viewer.exe dist/
   echo "✔ Windows: dist/sqlite-viewer.exe"
+fi
+
+if [[ " $* " == *" --deb "* ]]; then
+  command -v cargo-deb >/dev/null || cargo install cargo-deb --locked
+  cargo deb --no-build --output dist/
+  echo "✔ Paquete: $(ls dist/*.deb)"
+  echo "  Instalar con: sudo apt install ./$(ls dist/*.deb | tail -1)"
 fi

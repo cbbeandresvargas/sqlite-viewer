@@ -2,6 +2,31 @@
 name = "sqlite-viewer"
 version = "0.1.0"
 edition = "2021"
+description = "Visor ligero y nativo de bases de datos SQLite"
+authors = ["Andres Vargas"]
+license = "MIT"
+repository = "https://github.com/cbbeandresvargas/sqlite-viewer"
+readme = "README.md"
+
+# ---------- Empaquetado .deb (cargo install cargo-deb && cargo deb) ----------
+[package.metadata.deb]
+name = "sqlite-viewer"
+maintainer = "Andres Vargas"
+section = "database"
+priority = "optional"
+extended-description = """\
+Aplicación de escritorio minimalista para explorar y consultar bases de datos \
+SQLite, inspirada en la extensión SQLite Viewer de VS Code. Pensada para \
+equipos de pocos recursos: sin webviews, sin GPU, binario nativo único."""
+# $auto calcula las librerías compartidas necesarias (fontconfig, xkbcommon, libc...).
+depends = "$auto"
+recommends = "xdg-desktop-portal"
+assets = [
+    ["target/release/sqlite-viewer", "usr/bin/", "755"],
+    ["packaging/sqlite-viewer.desktop", "usr/share/applications/", "644"],
+    ["packaging/sqlite-viewer.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+    ["README.md", "usr/share/doc/sqlite-viewer/README.md", "644"],
+]
 
 [dependencies]
 # Renderizador por software: sin GPU/OpenGL, mínimo consumo de RAM.

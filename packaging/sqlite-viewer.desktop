@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=SQLite Viewer
+GenericName=Visor de bases de datos
+Comment=Explora y consulta bases de datos SQLite
+Exec=sqlite-viewer %f
+Icon=sqlite-viewer
+Terminal=false
+Categories=Development;Database;Utility;
+MimeType=application/vnd.sqlite3;application/x-sqlite3;
+Keywords=sqlite;database;db;sql;
+StartupWMClass=sqlite-viewer
