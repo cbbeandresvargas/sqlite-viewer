@@ -18,8 +18,8 @@ extended-description = """\
 Aplicación de escritorio minimalista para explorar y consultar bases de datos \
 SQLite, inspirada en la extensión SQLite Viewer de VS Code. Pensada para \
 equipos de pocos recursos: sin webviews, sin GPU, binario nativo único."""
-# $auto calcula las librerías compartidas necesarias (fontconfig, xkbcommon, libc...).
-depends = "$auto"
+# $auto calcula las librerías enlazadas; xkbcommon se carga dinámicamente (winit), por eso se añade a mano.
+depends = "$auto, libxkbcommon0, libxkbcommon-x11-0"
 recommends = "xdg-desktop-portal"
 assets = [
     ["target/release/sqlite-viewer", "usr/bin/", "755"],
