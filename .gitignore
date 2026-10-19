@@ -1,5 +1,33 @@
-/target
-*.db-journal
-*.db-wal
-*.db-shm
-dist/
+# --- Rust / Cargo ---
+/target/
+**/*.rs.bk
+*.pdb
+
+# --- Binarios generados por build.sh / build.ps1 ---
+/dist/
+
+# --- Bases de datos de prueba y archivos temporales de SQLite ---
+*.db
+*.sqlite
+*.sqlite3
+*.db3
+*.s3db
+*-journal
+*-wal
+*-shm
+
+# --- Editores / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs / variables de entorno ---
+*.log
+.env
