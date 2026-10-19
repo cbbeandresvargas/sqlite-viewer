@@ -1,0 +1,18 @@
+# Configuración de compilación multiplataforma.
+
+# Windows (MSVC): enlaza el runtime de C estáticamente -> el .exe no necesita
+# instalar "Visual C++ Redistributable" en el equipo destino.
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.i686-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# Windows compilado desde Linux con MinGW (cross-compilación).
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.i686-pc-windows-gnu]
+linker = "i686-w64-mingw32-gcc"
+rustflags = ["-C", "target-feature=+crt-static"]

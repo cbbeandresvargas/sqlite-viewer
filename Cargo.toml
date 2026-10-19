@@ -1,0 +1,21 @@
+[package]
+name = "sqlite-viewer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Renderizador por software: sin GPU/OpenGL, mínimo consumo de RAM.
+slint = { version = "1.8", default-features = false, features = ["std", "compat-1-2", "backend-winit", "renderer-software"] }
+# "bundled" compila SQLite dentro del binario (sin dependencias externas).
+rusqlite = { version = "0.32", features = ["bundled"] }
+rfd = "0.15"
+
+[build-dependencies]
+slint-build = "1.8"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
